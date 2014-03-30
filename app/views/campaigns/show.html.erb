@@ -1,0 +1,63 @@
+<div class="page-title">
+  <h1>
+    <%= @campaign.title %>
+  </h1>
+</div>
+
+  <section>
+    <!--#video and stats-->
+    <div class="col-md-8 video-container">
+      <%= @campaign.video_embed_code.html_safe %>
+    </div>
+    <div class="col-md-4 status-and-actions">
+      <div class="campaign-status">
+        <div class="pledge">
+          <h2><%= number_to_currency(@campaign.pledged_amount, unit: '$')%></h2>
+          <h3><span class="small">of <%= number_to_currency(@campaign.goal, unit: '$')%> pledged</span></h3>
+          <div class="status-bar">
+            <div class="status-bar-positive" style="width:<%= @campaign.met_goal_percentage%>%"></div>
+            <div class="status-bar-negative" style="width:<%= @campaign.unmet_goal_percentage%>%"></div>
+          </div>
+        </div>
+        <div class="backers-days">
+          <div class="backers">
+            <h2><%= @campaign.backer_count || 0%></h2>
+            <h3><span class="small">backers</span></h3>
+          </div>
+          <div class="days">
+            <h2><%= @campaign.days_left%></h2>
+            <h3><span class="small">days left</span></h3>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-success">Fund It</button>
+        <button type="button" class="btn btn-primary">Share</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+      <!--#author description-->
+      <h2>About <%=@campaign.author_name%></h2>
+      <div class="col-md-12">
+        <div class="author-photo" style="background:url(<%= @campaign.author_photo.url %>) no-repeat;"></div>
+        <%=@campaign.author_description_html.html_safe%>
+      </div>
+  </section>
+
+  <section>
+    <!--#project description-->
+    <h2>More About This Project</h2>
+    <div class="col-md-12">
+      <%=@campaign.description_html.html_safe%>
+    </div>
+  </section>
+
+  <section>
+    <!--#how funds will be used-->
+    <h2>How The Funds Will Be Used</h2>
+    <div class="col-md-12">
+      <%=@campaign.funds_description_html.html_safe%>
+    </div>
+  </section>

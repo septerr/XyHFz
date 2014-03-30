@@ -1,0 +1,44 @@
+  <section>
+    <div class="col-md-12">
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <%
+             @carousel_campaigns.each_with_index do |campaign, index|
+          %>
+              <li data-target="#carousel" data-slide-to="<%= index%>" class="<%= index==0 ? 'active' : ''%>"></li>
+          <%
+             end
+          %>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <%
+             @carousel_campaigns.each_with_index do |campaign, index|
+          %>
+              <div class="<%= index == 0 ? 'item active' : 'item' %>">
+                <%= image_tag campaign.carousel_image.url %>
+                <div class="container">
+                  <div class="carousel-caption">
+                    <h1 class="title"><a href="/campaigns/<%= campaign.id%>"><%= campaign.title%></a></h1>
+                    <h2 class="description"><%= campaign.carousel_description %></h2>
+                    <p><a href="/campaigns/<%= campaign.id%>">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
+          <%
+             end
+          %>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div>
+  </section>

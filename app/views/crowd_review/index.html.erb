@@ -1,0 +1,22 @@
+<div class="page-title">
+  <h1>
+    Review and Vote For Campaigns
+  </h1>
+</div>
+<%
+   Campaign.campaigns_under_review.each_slice(2).to_a.each do |campaign_pair|
+%>
+    <section>
+      <%
+         campaign_pair.each do |campaign|
+      %>
+          <div class="col-md-6 video-container">
+            <%= campaign.video_embed_code.html_safe %>
+          </div>
+      <%
+         end
+      %>
+    </section>
+<%
+   end
+%>

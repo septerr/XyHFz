@@ -1,0 +1,117 @@
+// import the CSS framework
+@import "bootstrap";
+// make all images responsive by default
+img {
+  @extend .img-responsive;
+  margin: 0 auto;
+  }
+// override for the 'Home' navigation link
+.navbar-brand {
+  font-size: inherit;
+  }
+
+// THESE ARE EXAMPLES YOU CAN MODIFY
+// create your own classes
+// to make views framework-neutral
+.column {
+  @extend .col-md-6;
+  @extend .text-center;
+  }
+.form {
+  @extend .col-md-6;
+  }
+.form-centered {
+  @extend .col-md-6;
+  @extend .text-center;
+  }
+.submit {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+  }
+// apply styles to HTML elements
+// to make views framework-neutral
+.main {
+  @extend .container;
+  margin-top: 51px; // accommodate the navbar
+}
+div.page-title{
+  @extend .page-header;
+  @extend .text-center;
+  margin-top: $line-height-computed;
+  border-bottom: 1px solid $page-header-border-color;
+
+}
+section {
+  @extend .row;
+  padding-top: $line-height-computed;
+}
+
+.carousel-caption{
+ top: 40px;
+ bottom: 20px;
+ text-shadow: -1px 1px 1px #000;
+  h1, h2, h1 a{
+    color: darken(#fff, 10%);
+ }
+ h1 a{
+   &:hover{
+     text-decoration: none;
+     text-shadow: -2px 2px 2px #000;
+   }
+ }
+}
+
+@media (max-width: 1000px){
+ .description{
+   display: none;
+ }
+}
+
+
+
+//Campaigns#Show
+.campaign-status{
+//  background-color: rgba(236, 236, 236, 0.6);
+  padding: 5px 0;
+  .pledge, .backers, .days{
+   @extend .text-center;
+   h3,.small{
+     margin-top: -10px;
+   }
+ }
+
+}
+.status-bar{
+  width: 60%; //make the progress bar 60% as wide as the container div.
+  @extend .center-block; //center the progress bar
+  .status-bar-positive{
+   float: left;
+   height: 5px;
+   background-color: #5D8E48;
+ }
+ .status-bar-negative{
+   float: left;
+   height: 5px;
+   background-color: #FE6B68;
+ }
+}
+
+.actions{
+  @extend .text-center; //center the progress bar
+}
+
+.author-photo{
+  float: left;
+  margin-right: 5px;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  display: block;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+}
+div, span, h1, h2{
+// outline: auto;
+}
