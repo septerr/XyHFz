@@ -23,3 +23,7 @@
 
 #ruby-mine
 .idea
+
+#local s3 vars
+s3_constants.rb
+
