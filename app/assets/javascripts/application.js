@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require pixit/bootstrap.min.js
 //= require_tree .
