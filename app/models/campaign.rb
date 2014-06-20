@@ -85,5 +85,9 @@ class Campaign < ActiveRecord::Base
     campaigns.flatten
   end
 
+  def category_names
+    categories.map(&:name)
+  end
+
 
 end

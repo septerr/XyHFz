@@ -13,6 +13,7 @@
   <link rel="shortcut icon" href="<%= asset_path 'favicon.png' %>">
   <%= stylesheet_link_tag 'frontend_manifest', media: "all" %>
   <%= javascript_include_tag 'frontend_manifest_header' %>
+  <%= yield :head %>
 </head>
 
 <body id="animated-page">
@@ -25,21 +26,22 @@
       </button>
       <h1>
         <a class="navbar-brand" href="/" data-0="line-height:80px" data-300="line-height:58px">
-          <img src="<%= asset_path 'logo.png' %>" data-0="line-height:80px" data-300="line-height:58px" alt="logo" width="90" height="29"></a>
+          <!--<img src="<%= asset_path 'logo.png' %>" data-0="line-height:38px" data-300="line-height:58px" alt="logo" width="250" height="38"></a>-->
+          Healthfundit
         </a>
       </h1>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:7px;">
-        <li class="active"><a href="index.html">Home</a>
+        <li class="active"><a href="/">Home</a>
         </li>
-        <li><a href="tour.html">Tour</a>
+        <li><a href="tour.html">How It Works</a>
         </li>
-        <li><a href="pricing.html">Pricing</a>
+        <li><a href="/crowd_review">Browse & Review</a>
         </li>
-        <li><a href="portfolio.html">Portfolio</a>
+        <li><a href="portfolio.html">Contact</a>
         </li>
-        <li><a href="contact.html">Contact</a>
+        <li><a href="contact.html">Login</a>
         </li>
       </ul>
     </div>

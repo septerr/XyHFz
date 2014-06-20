@@ -1,22 +1,81 @@
-<div class="page-title">
-  <h1>
-    Review and Vote For Campaigns
-  </h1>
+<% content_for :head do %>
+    <%= stylesheet_link_tag 'pixit/plugins/magnific-popup.css', media: "all" %>
+<% end %>
+<section class="section-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="align-center">
+          <i class="glyph-icon flaticon-gallery fa-5x m-b-20"></i>
+          <h1 class="slogan">Campaigns Under Review</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="section-works" class="section p-t-40 appear clearfix" style="height:1160px">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="control-bar sandbox-control-bar">
+  <div class="btn-group m-b-20">
+    <span class="btn btn-white filter active" data-filter="all">All</span>
+    <%
+       Category.all.each do |category|
+    %>
+        <span class="btn btn-white filter" data-filter="<%= category.name %>"><%= category.name %></span>
+    <%
+       end
+    %>
+  </div>
+  <div class="pull-right m-b-20">
+    <div class="btn-group">
+      <span class="btn btn-white sort" data-sort="value:asc"><i class="fa fa-sort-numeric-asc"></i></span>
+      <span class="btn btn-white sort" data-sort="value:desc"><i class="fa fa-sort-numeric-desc"></i></span>
+    </div>
+  </div>
 </div>
+<div id="gallery" class="gallery config-open">
 <%
-   Campaign.campaigns_under_review.each_slice(2).to_a.each do |campaign_pair|
+    Campaign.all.each_slice(3) do |campaigns|
 %>
-    <section>
-      <%
-         campaign_pair.each do |campaign|
-      %>
-          <div class="col-md-6 video-container">
-            <%= campaign.video_embed_code.html_safe %>
+    <div class="row">
+<%
+   campaigns.each do |campaign|
+%>
+          <div class="mix <%= campaign.category_names.join(' ') %> col-md-4 col-sm-6 col-xs-12" data-value="1">
+            <div class="thumbnail">
+              <div class="overlay">
+                <div class="thumbnail-actions">
+                  <a href="<%= campaign.carousel_image.url %>" class="btn btn-default btn-icon btn-rounded magnific" title="<%= campaign.title %>"><i class="fa fa-search"></i></a>
+                  <a href="#" class="btn btn-default btn-icon btn-rounded favorite" title="love this picture"><i class="fa fa-heart"></i></a>
+                </div>
+              </div>
+              <img src="<%= campaign.carousel_image.url %>" class="img-responsive" alt="<%= campaign.title %>" />
+              <div class="thumbnail-meta">
+                <h5>
+                  <%= campaign.title %><br>
+                  <small>Jan 28, 2014</small>
+                </h5>
+              </div>
+            </div>
+            <div><a href=""><i class="fa fa-thumbs-o-up"></i></a><span style="color:grey"> (20 upvotes)</span></div>
           </div>
-      <%
-         end
-      %>
-    </section>
 <%
    end
 %>
+    </div>
+
+<%
+    end
+%>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END PORTFOLIO GALLERY  -->
+
+
+
