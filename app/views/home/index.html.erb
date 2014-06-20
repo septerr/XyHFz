@@ -1,44 +1,148 @@
-  <section>
-    <div class="col-md-12">
-      <div id="carousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
+<!-- revolution slider -->
+<section>
+  <div class="fullwidthbanner-container">
+    <div class="fullwidthbanner" id="home">
+      <ul>
+        <!-- SLIDE  -->
           <%
              @carousel_campaigns.each_with_index do |campaign, index|
           %>
-              <li data-target="#carousel" data-slide-to="<%= index%>" class="<%= index==0 ? 'active' : ''%>"></li>
-          <%
-             end
-          %>
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <%
-             @carousel_campaigns.each_with_index do |campaign, index|
-          %>
-              <div class="<%= index == 0 ? 'item active' : 'item' %>">
-                <%= image_tag campaign.carousel_image.url %>
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1 class="title"><a href="/campaigns/<%= campaign.id%>"><%= campaign.title%></a></h1>
-                    <h2 class="description"><%= campaign.carousel_description %></h2>
-                    <p><a href="/campaigns/<%= campaign.id%>">Learn More</a></p>
-                  </div>
-                </div>
+            <li data-transition="slotfade-vertical" data-slotamount="5" data-masterspeed="300">
+              <%= image_tag campaign.carousel_image.url %>
+              <div class="caption sft" data-x="center" data-y="225" data-speed="700" data-start="1400" data-easing="easeOutBack">
+                    <h1><a href="/campaigns/<%= campaign.id%>"><%= campaign.title%></a></h1>
               </div>
+              <div class="caption fade" data-x="center" data-y="400" data-speed="500" data-start="1900" data-easing="easeOutBack">
+                <a href="/campaigns/<%= campaign.id%>" class="btn btn-transparent btn-lg  btn-large">Learn More</a>
+              </div>
+            </li>
           <%
              end
           %>
-        </div>
+      </ul>
+    </div>
+  </div>
+</section>
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
+<!-- section 1-->
+<section class="section-txt bg-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="align-center">
+          <h2 class="slogan">You must be the change you wish to see in the world.</h2>
+          <p>- Gandhi -</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- section 2-->
+<section id="section-services" class="animated-section section p-b-30 bg-white">
+  <div class="container">
+    <div class="row side top m-b-40">
+      <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 txt-center">
+        <h1>A lot of possibilities</h1>
+        <p class="m-b-40">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum.
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <div class="align-center">
+          <i class="glyph-icon flaticon-ui-elements2 fa-5x m-b-20"></i>
+          <h4 class="text-bold">Valid HTML5</h4>
+          <p>Lorem ipsum dolor sit amet, mutat graeco volumus ad eam, singulis patrioque comprehensam nam no. Mei cu dicat voluptaria volumus.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="align-center">
+          <i class="glyph-icon flaticon-viral fa-5x m-b-20"></i>
+          <h4 class="text-bold">Responsive</h4>
+          <p>Lorem ipsum dolor sit amet, mutat graeco volumus ad eam, singulis patrioque comprehensam nam no. Mei cu dicat voluptaria volumus.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="align-center">
+          <i class="glyph-icon flaticon-gallery fa-5x m-b-20"></i>
+          <h4 class="text-bold">Customizable</h4>
+          <p>Lorem ipsum dolor sit amet, mutat graeco volumus ad eam, singulis patrioque comprehensam nam no. Mei cu dicat voluptaria volumus.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- section 3-->
+<section id="parallax1" class="section p-t-40 p-b-40" data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="align-center p-t-40 p-b-40">
+      <blockquote class="bigquote">Indoctum accusamus comprehensam</blockquote>
+      <p>Join us</p>
+    </div>
+  </div>
+</section>
+
+<!-- begin section 4-->
+<section class="bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="span12 p-t-50 p-b-40">
+        <div id="testimonials" class="owl-carousel">
+          <div class="item">
+            <div class="col-md-6  col-md-offset-3">
+              <h3 class="normal text-center">
+                I have been very impressed with your friendliness and responsiveness. Thank you so much and I'm waiting for the next theme!
+              </h3>
+              <p class="text-center">
+                <img src="/img/testimonial1.jpg" class="img-circle" alt="Testimonial 1">Steve Mac Queen, client, New York City
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="col-md-6  col-md-offset-3">
+              <h3 class="normal text-center">
+                I have been very impressed with your friendliness and responsiveness. Thank you so much and I'm waiting for the next theme!
+              </h3>
+              <p class="text-center">
+                <img src="/img/testimonial2.jpg" class="img-circle" alt="Testimonial 2">Steve Mac Queen, client, New York City
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="col-md-6  col-md-offset-3">
+              <h3 class="normal text-center">
+                I have been very impressed with your friendliness and responsiveness. Thank you so much and I'm waiting for the next theme!
+              </h3>
+              <p class="text-center">
+                <img src="/img/testimonial3.jpg" class="img-circle" alt="Testimonial 3">Steve Mac Queen, client, New York City
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section 4 -->
+
+<!-- begin section 5-->
+<section id="subscribe" class="subscribe-form">
+  <div class="container">
+    <div class="row">
+      <form>
+        <div class="col-sm-8">
+          <input type="text" placeholder="Enter your e-mail" spellcheck="false">
+        </div>
+        <div class="col-sm-4">
+          <button class="btn btn-large btn-blue" type="submit">
+            Subscribe now
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- end section 5 -->

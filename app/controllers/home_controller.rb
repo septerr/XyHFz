@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  layout 'dashboard'
+  layout 'frontend'
   def index
   @carousel_campaigns = Campaign.carousel_campaigns
   end
