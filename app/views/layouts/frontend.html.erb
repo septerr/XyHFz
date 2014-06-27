@@ -17,6 +17,18 @@
 </head>
 
 <body id="animated-page">
+<!-- BEGIN PRELOADER -->
+<section class="preloader">
+  <div id="loading-animation">
+    <ul class="spinner">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</section>
+<!-- END PRELOADER -->
 <!-- top menu bar-->
 <nav class="navbar navbar-fixed-top" role="navigation" data-0="line-height:85px; height:85px; background-color:rgba(43,46,51,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(43,46,51,1);">
   <div class="container">
@@ -31,8 +43,8 @@
         </a>
       </h1>
     </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:7px;">
+    <div class="navbar-collapse pull-right  collapse">
+      <ul class="nav navbar-nav header-menu" data-0="margin-top:20px;" data-300="margin-top:7px;">
         <li class="active"><a href="/">Home</a>
         </li>
         <li><a href="tour.html">How It Works</a>
@@ -41,8 +53,54 @@
         </li>
         <li><a href="portfolio.html">Contact</a>
         </li>
-        <li><a href="contact.html">Login</a>
-        </li>
+        <%
+           if user_signed_in?
+        %>
+            <li class="dropdown" id="user-header">
+              <a href="#" class="dropdown-toggle c-white" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                <img src="/img/avatars/avatar2.png" alt="user avatar" width="30" class="p-r-5">
+                <span class="username"><%= current_user.name%></span>
+                <i class="fa fa-angle-down p-r-10"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="profil.html">
+                    <i class="glyph-icon flaticon-account"></i> My Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="calendar.html">
+                    <i class="glyph-icon flaticon-calendar"></i> My Calendar
+                  </a>
+                </li>
+                <li>
+                  <a href="profil_edit.html">
+                    <i class="glyph-icon flaticon-settings21"></i> Account Settings
+                  </a>
+                </li>
+                <li class="dropdown-footer clearfix">
+                  <a href="javascript:;" class="toggle_fullscreen" title="Fullscreen">
+                    <i class="glyph-icon flaticon-fullscreen3"></i>
+                  </a>
+                  <a href="lockscreen.html" title="Lock Screen">
+                    <i class="glyph-icon flaticon-padlock23"></i>
+                  </a>
+                  <a href="login.html" title="Logout">
+                    <i class="fa fa-power-off"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            </li>
+        <%
+           else
+        %>
+            <li><a href="/login">Login</a>
+            </li>
+        <%
+           end
+        %>
+
       </ul>
     </div>
   </div>
