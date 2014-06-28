@@ -1,6 +1,6 @@
 Healthfundit::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  root to: 'home#index'
+  root to: 'crowd_review#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

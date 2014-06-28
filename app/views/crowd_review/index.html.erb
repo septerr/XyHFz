@@ -4,15 +4,73 @@
 <section class="section-top">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-12">
         <div class="align-center">
           <i class="glyph-icon flaticon-gallery fa-5x m-b-20"></i>
-          <h1 class="slogan">Campaigns Under Review</h1>
+          <h1 class="slogan">Discover Cutting-Edge Science</h1>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<section id="section-pricing" class="section appear clearfix">
+  <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+       <div class="control-bar sandbox-control-bar">
+         <div class="btn-group m-b-20">
+           <span class="btn btn-white filter active" data-filter="all">All</span>
+           <%
+              Category.all.each do |category|
+           %>
+               <span class="btn btn-white filter" data-filter="<%= category.name %>"><%= category.name %></span>
+           <%
+              end
+           %>
+         </div>
+         <div class="pull-right m-b-20">
+           <div class="btn-group">
+             <span class="btn btn-white sort" data-sort="value:asc"><i class="fa fa-sort-numeric-asc"></i></span>
+             <span class="btn btn-white sort" data-sort="value:desc"><i class="fa fa-sort-numeric-desc"></i></span>
+           </div>
+         </div>
+       </div>
+     </div>
+    </div>
+    <%
+       Campaign.all.each do |campaign|
+    %>
+        <div class="row">
+          <hr>
+          <div class="col-md-12">
+            <div class="panel panel-default text-center">
+              <div class="panel-heading">
+                <h3><%= campaign.title %></h3>
+                <h3 class="panel-title price">by <%= campaign.author_name %></span></h3>
+              </div>
+              <div>
+                <%= campaign.description_html.html_safe %>
+              </div>
+              <ul class="list-group">
+                <li class="list-group-item"><i class="fa fa-check"></i> 5 Projects</li>
+                <li class="list-group-item">5 GB of Storage</li>
+                <li class="list-group-item">Up to 100 Users</li>
+                <li class="list-group-item">10 GB Bandwidth</li>
+                <li class="list-group-item">Security Suite</li>
+                <li class="list-group-item m-b-20"><a class="btn btn-danger">Buy Now!</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    <%
+       end
+    %>
+  </div>
+</section>
+
+
 <section id="section-works" class="section p-t-40 appear clearfix" style="height:1160px">
 <div class="container">
 <div class="row">
