@@ -1,6 +1,6 @@
 Healthfundit::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  root to: 'crowd_review#index'
+  root to: 'campaigns#under_crowdreview'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -60,8 +60,11 @@ Healthfundit::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  get 'campaigns/under_crowdreview', to: 'campaigns#under_crowdreview'
+  resources :campaigns do
+    resources :upvotes
+  end
   get 'campaigns/:id', to: 'campaigns#show'
   get 'crowd_review', to: 'crowd_review#index'
   get 'login', to: 'login#index'
-
 end

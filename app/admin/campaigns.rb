@@ -30,6 +30,8 @@ ActiveAdmin.register Campaign do
       f.input :campaign_status, :include_blank => false
       f.input :description_markdown
       f.input :video_embed_code, hint: 'Youtube or Vimeo embed code', :input_html => {:rows => 2}
+      f.input :excerpt
+      f.input :summary
     end
 
     f.inputs "Researcher(s) Information" do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140627035354) do
+ActiveRecord::Schema.define(:version => 20140629100701) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(:version => 20140627035354) do
     t.text     "funds_description_md"
     t.text     "funds_description_html"
     t.integer  "campaign_status_id"
+    t.string   "excerpt"
+    t.string   "summary"
   end
 
   create_table "categories", :force => true do |t|
@@ -101,6 +103,13 @@ ActiveRecord::Schema.define(:version => 20140627035354) do
     t.datetime "updated_at",                                 :null => false
     t.decimal  "amount",      :precision => 12, :scale => 2
     t.integer  "user_id"
+  end
+
+  create_table "upvotes", :force => true do |t|
+    t.integer  "user"
+    t.integer  "campaign"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

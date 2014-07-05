@@ -2,7 +2,7 @@ class Campaign < ActiveRecord::Base
   attr_accessible :name, :carousel_image, :show_in_carousel, :title, :carousel_description,
                   :video_embed_code, :goal, :end_date, :backer_count, :author_name, :author_photo,
                   :author_description_md, :author_description_html, :description_markdown, :description_html,
-                  :funds_description_md, :funds_description_html, :campaign_status_id, :category_ids
+                  :funds_description_md, :funds_description_html, :campaign_status_id, :category_ids, :excerpt, :summary
   #category_ids need to be in the attr_accessible call in order for active_admin to let us associate categories
   #to a campaign via the campaign form.
 
@@ -27,6 +27,8 @@ class Campaign < ActiveRecord::Base
   #validations
   validates :name, :title, :campaign_status_id, :description_markdown, :author_description_md, :funds_description_md, :video_embed_code, :goal, :end_date, :presence => true
   validates :carousel_image, :carousel_description, :presence => true, :if => :show_in_carousel?
+  validates :excerpt, length: {maximum: 60}, :presence => true
+  validates :summary, length: {maximum: 300}, :presence => true
 
   #callbacks
   before_save :convert_markdown
