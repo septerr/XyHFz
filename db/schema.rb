@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140629100701) do
+ActiveRecord::Schema.define(:version => 20140706185603) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -64,31 +64,19 @@ ActiveRecord::Schema.define(:version => 20140629100701) do
     t.string   "name"
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
-    t.string   "carousel_image_file_name"
-    t.string   "carousel_image_content_type"
-    t.integer  "carousel_image_file_size"
-    t.datetime "carousel_image_updated_at"
     t.string   "title"
     t.boolean  "show_in_carousel"
     t.text     "video_embed_code"
-    t.text     "carousel_description"
     t.decimal  "goal",                        :precision => 12, :scale => 2
     t.date     "end_date"
     t.integer  "backer_count"
-    t.string   "author_photo_file_name"
-    t.string   "author_photo_content_type"
-    t.integer  "author_photo_file_size"
-    t.datetime "author_photo_updated_at"
-    t.text     "description_markdown"
-    t.text     "description_html"
-    t.string   "author_name"
-    t.text     "author_description_md"
-    t.text     "author_description_html"
-    t.text     "funds_description_md"
-    t.text     "funds_description_html"
     t.integer  "campaign_status_id"
     t.string   "excerpt"
     t.string   "summary"
+    t.string   "featured_image_file_name"
+    t.string   "featured_image_content_type"
+    t.integer  "featured_image_file_size"
+    t.datetime "featured_image_updated_at"
   end
 
   create_table "categories", :force => true do |t|
@@ -103,6 +91,15 @@ ActiveRecord::Schema.define(:version => 20140629100701) do
     t.datetime "updated_at",                                 :null => false
     t.decimal  "amount",      :precision => 12, :scale => 2
     t.integer  "user_id"
+  end
+
+  create_table "researchers", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "institute"
+    t.text     "bio"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "upvotes", :force => true do |t|

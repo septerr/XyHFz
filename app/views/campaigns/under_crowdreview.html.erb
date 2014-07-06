@@ -32,7 +32,7 @@
             <div>
               <div class="panel-heading text-center">
                 <h3><%= campaign.title %></h3>
-                <span class="author"><%= campaign.author_name %></span>
+                <span class="author">researcher</span>
               </div>
               <div>
                 <%= campaign.excerpt %>
@@ -49,18 +49,19 @@
 $(function(){
     //upvote handler
     $('.upvote-button').click(function(){
-        var campaignid = $(this).attr('data-campaign-id');
-        $.ajax({
+        var $this = $(this);
+        var campaignid = $this.attr('data-campaign-id');
+        var url = $this.hasClass('active') ? '/campaigns/' + campaignid + '/upvotes/delete.json' : '/campaigns/' + campaignid + '/upvotes.json'
+                $.ajax({
             type: 'POST',
-            url: '/campaigns/' + campaignid + '/upvotes.json',
+            url: url,
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
         }).done(function(data){
            var $upvoteButton = $('[data-campaign-id=' + campaignid + ']').first();
-           $upvoteButton.addClass('active');
+           $upvoteButton.toggleClass('active');
            $('.upvote-count', $upvoteButton.parent()).html(data.upvoteCount);
         }).fail(function(){
-            $('[data-campaign-id=' + campaignid + ']').removeClass('active');
-            alert('Upvote failed :('); //todo Use a flash message bar in header to display messages.
+            alert('Request failed :('); //todo Use a flash message bar in header to display messages.
                 });
     });
 });

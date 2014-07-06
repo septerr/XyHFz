@@ -61,10 +61,9 @@ Healthfundit::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   get 'campaigns/under_crowdreview', to: 'campaigns#under_crowdreview'
+  post 'campaigns/:campaign_id/upvotes/delete', to: 'upvotes#destroy'
   resources :campaigns do
     resources :upvotes
   end
-  get 'campaigns/:id', to: 'campaigns#show'
-  get 'crowd_review', to: 'crowd_review#index'
   get 'login', to: 'login#index'
 end

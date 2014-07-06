@@ -7,7 +7,7 @@
              @carousel_campaigns.each_with_index do |campaign, index|
           %>
             <li data-transition="slotfade-vertical" data-slotamount="5" data-masterspeed="300">
-              <%= image_tag campaign.carousel_image.url %>
+              <%= image_tag campaign.featured_image.url %>
               <div class="caption sft" data-x="center" data-y="225" data-speed="700" data-start="1400" data-easing="easeOutBack">
                     <h1><a href="/campaigns/<%= campaign.id%>"><%= campaign.title%></a></h1>
               </div>

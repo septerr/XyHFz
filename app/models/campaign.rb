@@ -1,21 +1,14 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :name, :carousel_image, :show_in_carousel, :title, :carousel_description,
-                  :video_embed_code, :goal, :end_date, :backer_count, :author_name, :author_photo,
-                  :author_description_md, :author_description_html, :description_markdown, :description_html,
-                  :funds_description_md, :funds_description_html, :campaign_status_id, :category_ids, :excerpt, :summary
+  attr_accessible :name, :featured_image, :show_in_carousel, :title,
+                  :video_embed_code, :goal, :end_date, :backer_count, :campaign_status_id, :category_ids, :excerpt, :summary
   #category_ids need to be in the attr_accessible call in order for active_admin to let us associate categories
   #to a campaign via the campaign form.
 
 
   #paperclip
   #todo: add missing.png
-  has_attached_file :carousel_image, :styles => { :medium => '300x300>', :thumb => '100x100>'}, :default_url => '/images/:style/missing.png'
-  validates_attachment_content_type :carousel_image, :content_type => /\Aimage\/.*\Z/
-
-  has_attached_file :author_photo, :styles => { :medium => '200x200>', :thumb => '100x100>'}, :default_url => '/images/:style/missing.png'
-  validates_attachment_content_type :carousel_image, :content_type => /\Aimage\/.*\Z/
-
-
+  has_attached_file :featured_image, :styles => { :medium => '300x300>', :thumb => '100x100>'}, :default_url => '/images/:style/missing.png'
+  validates_attachment_content_type :featured_image, :content_type => /\Aimage\/.*\Z/
 
   #associations
   belongs_to :campaign_status
@@ -24,31 +17,21 @@ class Campaign < ActiveRecord::Base
   has_many :pledges, dependent: :destroy
   has_many :backers, through: :pledges, class_name: 'User'
   has_many :upvotes
+  has_many :researchers
 
   #validations
-  validates :name, :title, :campaign_status_id, :description_markdown, :author_description_md, :funds_description_md, :video_embed_code, :goal, :end_date, :presence => true
-  validates :carousel_image, :carousel_description, :presence => true, :if => :show_in_carousel?
+  validates :name, :title, :campaign_status_id, :video_embed_code, :goal, :end_date, :presence => true
+  validates :featured_image, :presence => true, :if => :show_in_carousel?
   validates :excerpt, length: {maximum: 60}, :presence => true
   validates :summary, length: {maximum: 300}, :presence => true
 
-  #callbacks
-  before_save :convert_markdown
 
   def validate_image_dimensions
-    dimensions = Paperclip::Geometry.from_file(carousel_image.queued_for_write[:original].path)
+    dimensions = Paperclip::Geometry.from_file(featured_image.queued_for_write[:original].path)
     if dimensions.height < 2000 || dimensions.width < 3000
-      errors.add(:carousel_image,"Picture must be at least 3000 x 2000px. Provided picture is #{dimensions.width} x #{dimensions.height}.")
+      errors.add(:featured_image,"Picture must be at least 3000 x 2000px. Provided picture is #{dimensions.width} x #{dimensions.height}.")
     end
   end
-
-  #callback methods
-  def convert_markdown
-    renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
-    self.description_html = renderer.render(self.description_markdown)
-    self.author_description_html = renderer.render(self.author_description_md)
-    self.funds_description_html = renderer.render(self.funds_description_md)
-  end
-
 
  #methods used by controllers / views
 
