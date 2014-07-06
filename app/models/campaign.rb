@@ -23,6 +23,7 @@ class Campaign < ActiveRecord::Base
   has_many :categories, through: :campaign_categories
   has_many :pledges, dependent: :destroy
   has_many :backers, through: :pledges, class_name: 'User'
+  has_many :upvotes
 
   #validations
   validates :name, :title, :campaign_status_id, :description_markdown, :author_description_md, :funds_description_md, :video_embed_code, :goal, :end_date, :presence => true
@@ -89,6 +90,10 @@ class Campaign < ActiveRecord::Base
 
   def category_names
     categories.map(&:name)
+  end
+
+  def has_user_upvoted?(user_id)
+   upvotes.where(:user_id => user_id).size() > 0
   end
 
 

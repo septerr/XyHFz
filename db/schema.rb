@@ -106,10 +106,10 @@ ActiveRecord::Schema.define(:version => 20140629100701) do
   end
 
   create_table "upvotes", :force => true do |t|
-    t.integer  "user"
-    t.integer  "campaign"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "campaign_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

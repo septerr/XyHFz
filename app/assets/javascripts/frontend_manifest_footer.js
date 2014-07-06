@@ -1,5 +1,4 @@
 // Mandatory
-//= require pixit/jquery-1.11.js
 //= require pixit/bootstrap.min.js
 //= require pixit/plugins/owl.carousel.min.js
 //= require pixit/plugins/jquery.nicescroll.min

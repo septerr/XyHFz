@@ -24,9 +24,9 @@
         <div class="col-md-12">
           <div class="panel">
             <div class="text-center pull-left">
-              <i class="fa fa-long-arrow-up upvote-button " data-campaign-id="<%= campaign.id%>"></i>
-              <div class="text-center">
-                <span>20</span>
+              <i class="fa fa-long-arrow-up upvote-button <%= campaign.has_user_upvoted?(current_user.id) ? 'active' : '' %> " data-campaign-id="<%= campaign.id%>"></i>
+              <div class="text-center upvote-count">
+                <%= campaign.upvotes.count%>
               </div>
             </div>
             <div>
@@ -45,3 +45,23 @@
      end
   %>
 </section>
+<script type="application/javascript">
+$(function(){
+    //upvote handler
+    $('.upvote-button').click(function(){
+        var campaignid = $(this).attr('data-campaign-id');
+        $.ajax({
+            type: 'POST',
+            url: '/campaigns/' + campaignid + '/upvotes.json',
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+        }).done(function(data){
+           var $upvoteButton = $('[data-campaign-id=' + campaignid + ']').first();
+           $upvoteButton.addClass('active');
+           $('.upvote-count', $upvoteButton.parent()).html(data.upvoteCount);
+        }).fail(function(){
+            $('[data-campaign-id=' + campaignid + ']').removeClass('active');
+            alert('Upvote failed :('); //todo Use a flash message bar in header to display messages.
+                });
+    });
+});
+</script>
