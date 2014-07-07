@@ -66,4 +66,5 @@ Healthfundit::Application.routes.draw do
     resources :upvotes
   end
   get 'login', to: 'login#index'
+  resources :crCampaigns
 end

@@ -17,7 +17,8 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'redcarpet'
-gem 'backbone-rails'
+gem 'rails-backbone'
+gem 'smt_rails', :git => 'git://github.com/railsware/smt_rails.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

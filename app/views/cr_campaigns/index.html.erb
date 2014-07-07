@@ -1,0 +1,47 @@
+<% content_for :head do %>
+    <%= stylesheet_link_tag 'pixit/plugins/magnific-popup.css', media: "all" %>
+<% end %>
+<section class="section-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="align-center">
+          <i class="glyph-icon flaticon-gallery fa-5x m-b-20"></i>
+
+          <h1 class="slogan">Discover Cutting-Edge Science</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="section-crowdreview" class="section appear clearfix">
+  <%
+     @campaigns_json.each do  |campaign_json|
+  %>
+      <%= render 'cr_campaigns/crcampaign', :mustache => campaign_json  %>
+<%
+     end
+  %>
+</section>
+
+<script type="application/javascript">
+    $(function(){
+        //upvote handler
+        $('.upvote-button').click(function(){
+            var $this = $(this);
+            var campaignid = $this.attr('data-campaign-id');
+            var url = $this.hasClass('active') ? '/campaigns/' + campaignid + '/upvotes/delete.json' : '/campaigns/' + campaignid + '/upvotes.json'
+            $.ajax({
+                type: 'POST',
+                url: url,
+                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+            }).done(function(data){
+                var $upvoteButton = $('[data-campaign-id=' + campaignid + ']').first();
+                $upvoteButton.toggleClass('active');
+                $('.upvote-count', $upvoteButton.parent()).html(data.upvoteCount);
+            }).fail(function(){
+                alert('Request failed :('); //todo Use a flash message bar in header to display messages.
+            });
+        });
+    });
+</script>

@@ -1,6 +1,5 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :name, :featured_image, :show_in_carousel, :title,
-                  :video_embed_code, :goal, :end_date, :backer_count, :campaign_status_id, :category_ids, :excerpt, :summary
+  attr_accessible :name, :featured_image, :show_in_carousel, :title, :video_embed_code, :goal, :end_date, :pledge_count, :comment_count, :campaign_status_id, :category_ids, :excerpt, :summary, :upvote_count
   #category_ids need to be in the attr_accessible call in order for active_admin to let us associate categories
   #to a campaign via the campaign form.
 
@@ -78,6 +77,5 @@ class Campaign < ActiveRecord::Base
   def has_user_upvoted?(user_id)
    upvotes.where(:user_id => user_id).size() > 0
   end
-
 
 end
