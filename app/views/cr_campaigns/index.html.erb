@@ -15,33 +15,48 @@
   </div>
 </section>
 <section id="section-crowdreview" class="section appear clearfix">
-  <%
-     @campaigns_json.each do  |campaign_json|
-  %>
-      <%= render 'cr_campaigns/crcampaign', :mustache => campaign_json  %>
+<%
+ @campaigns_json.each do  |campaign_json|
+%>
+      <div class="col-md-12" id="crcampaign<%= campaign_json['id']%>">
+
+          <%= render '/crcampaign', :mustache => campaign_json  %>
+      </div>
 <%
      end
-  %>
+%>
 </section>
 
 <script type="application/javascript">
+//    $(function(){
+//        //upvote handler
+//        $('.upvote-button').click(function(){
+//            var $this = $(this);
+//            var campaignid = $this.attr('data-campaign-id');
+//            var url = $this.hasClass('active') ? '/campaigns/' + campaignid + '/upvotes/delete.json' : '/campaigns/' + campaignid + '/upvotes.json'
+//            $.ajax({
+//                type: 'POST',
+//                url: url,
+//                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+//            }).done(function(data){
+//                var $upvoteButton = $('[data-campaign-id=' + campaignid + ']').first();
+//                $upvoteButton.toggleClass('active');
+//                $('.upvote-count', $upvoteButton.parent()).html(data.upvoteCount);
+//            }).fail(function(){
+//                alert('Request failed :('); //todo Use a flash message bar in header to display messages.
+//            });
+//        });
+//    });
+
     $(function(){
-        //upvote handler
-        $('.upvote-button').click(function(){
-            var $this = $(this);
-            var campaignid = $this.attr('data-campaign-id');
-            var url = $this.hasClass('active') ? '/campaigns/' + campaignid + '/upvotes/delete.json' : '/campaigns/' + campaignid + '/upvotes.json'
-            $.ajax({
-                type: 'POST',
-                url: url,
-                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
-            }).done(function(data){
-                var $upvoteButton = $('[data-campaign-id=' + campaignid + ']').first();
-                $upvoteButton.toggleClass('active');
-                $('.upvote-count', $upvoteButton.parent()).html(data.upvoteCount);
-            }).fail(function(){
-                alert('Request failed :('); //todo Use a flash message bar in header to display messages.
-            });
+       Healthfundit.crCampaingns = new Healthfundit.Collections.CrCampaignCollection(<%= @campaigns_json.to_json.html_safe %>);
+        Healthfundit.crCampaingnViews = Healthfundit.crCampaingns.map(function(crCampaign){
+            return new Healthfundit.Views.CrCampaignView(
+                    {
+                        model:crCampaign,
+                        el: $("#crcampaign" + crCampaign.id)
+                    })
         });
+
     });
 </script>

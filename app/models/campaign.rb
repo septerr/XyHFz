@@ -1,9 +1,6 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :name, :featured_image, :show_in_carousel, :title, :video_embed_code, :goal, :end_date, :pledge_count, :comment_count, :campaign_status_id, :category_ids, :excerpt, :summary, :upvote_count
-  #category_ids need to be in the attr_accessible call in order for active_admin to let us associate categories
-  #to a campaign via the campaign form.
-
-
+  attr_accessible :name, :title, :excerpt, :summary, :goal, :featured_image, :campaign_status_id, :category_ids, :pledge_count, :comment_count, :upvote_count, :end_date
+  #category_ids need to be in the attr_accessible call in order for active_admin to let us associate categories to a campaign via the campaign form.
   #paperclip
   #todo: add missing.png
   has_attached_file :featured_image, :styles => { :medium => '300x300>', :thumb => '100x100>'}, :default_url => '/images/:style/missing.png'
@@ -19,7 +16,7 @@ class Campaign < ActiveRecord::Base
   has_many :researchers
 
   #validations
-  validates :name, :title, :campaign_status_id, :video_embed_code, :goal, :end_date, :presence => true
+  validates :name, :title, :campaign_status_id, :goal, :end_date, :presence => true
   validates :featured_image, :presence => true, :if => :show_in_carousel?
   validates :excerpt, length: {maximum: 60}, :presence => true
   validates :summary, length: {maximum: 300}, :presence => true

@@ -46,10 +46,10 @@
     </div>
     <div class="navbar-collapse pull-right  collapse">
       <ul class="nav navbar-nav header-menu" data-0="margin-top:20px;" data-300="margin-top:7px;">
-        <li><a href="/campaigns/under_crowdreview">Crowd Review</a></li>
-        <li><a href="tour.html">How It Works</a></li>
-        <li><a href="portfolio.html">Contact</a></li>
-        <li class="active"><a href="/">Home</a></li>
+        <li class="<%= 'active' if params[:controller] == 'cr_campaigns' %>"><a href="/crCampaigns">Crowd Review</a></li>
+        <li><a href="tour.html">Discover</a></li>
+        <li><a href="portfolio.html">How It Works</a></li>
+        <li><a href="portfolio.html">Start A Campaign</a></li>
         <%
            if user_signed_in?
         %>

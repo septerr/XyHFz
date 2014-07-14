@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140707044050) do
+ActiveRecord::Schema.define(:version => 20140713224347) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -65,8 +65,6 @@ ActiveRecord::Schema.define(:version => 20140707044050) do
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
     t.string   "title"
-    t.boolean  "show_in_carousel"
-    t.text     "video_embed_code"
     t.decimal  "goal",                        :precision => 12, :scale => 2
     t.date     "end_date"
     t.integer  "backer_count"

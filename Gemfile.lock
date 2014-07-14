@@ -77,7 +77,6 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    ejs (1.0.0)
     erubis (2.7.0)
     execjs (2.1.0)
     faraday (0.9.0)
@@ -166,10 +165,6 @@ GEM
       activesupport (= 3.2.15)
       bundler (~> 1.0)
       railties (= 3.2.15)
-    rails-backbone (0.7.2)
-      coffee-script (~> 2.2.0)
-      ejs (~> 1.0.0)
-      railties (>= 3.1.0)
     rails_layout (1.0.19)
     railties (3.2.15)
       actionpack (= 3.2.15)
@@ -220,7 +215,6 @@ DEPENDENCIES
   paperclip (~> 4.1)
   pg
   rails (= 3.2.15)
-  rails-backbone
   rails_layout
   redcarpet
   sass-rails (~> 3.2.3)

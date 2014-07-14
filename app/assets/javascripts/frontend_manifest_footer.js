@@ -13,7 +13,7 @@
 //= require pixit/plugins/onscroll-effect/classie
 //= require pixit/plugins/onscroll-effect/cbpScroller
 //= require pixit/video/video.js
-//Browse&Review (Portfolio) Specific
+//Crowd Review(Portfolio) Specific
 //= require pixit/plugins/jquery.magnific-popup.js
 //= require pixit/plugins/jquery.mixitup.js
 // Mandatory
