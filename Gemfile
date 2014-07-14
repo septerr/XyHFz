@@ -47,3 +47,5 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+ruby '1.9.3'
